@@ -1,0 +1,403 @@
+.App-header {
+  background-color: #240605;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #faf4e7;
+}
+
+
+/* Slidebar */
+/* ================================== */
+/* div */
+.navigation {
+  z-index: 1000;
+  background-color: #fa9315;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 55px;
+  width: 100%;
+  border-radius: 15px 0 15px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* logo of project in slidebar */
+.logo {
+  position: absolute;
+  left: 1rem;
+  background-color: #faf4e7;
+  height: 45px;
+  padding: 5px;
+  border-radius: 15px;
+  transition: width 0.3s ease; /* плавное изменение ширины */
+}
+
+.icon {
+  margin-left: 6px;
+  margin-top: 6px;
+  transition: transform 0.3s ease; /* добавляем плавное смещение */
+}
+
+/* Смещение иконки вправо, когда ширина логотипа увеличивается */
+.logo-expanded .icon {
+  transform: translateX(50px); /* перемещаем изображение вправо на 50px */
+}
+
+/* container for buttons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+/* button on slidebar */
+.btn {
+  border: none;
+  color: #faf4e7;
+  background: #fa9315;
+  font-size: medium;
+  padding: 0.5rem 1rem;
+  font: normal 1.2rem "FreeMono", monospace;
+  cursor: pointer;
+  transition: .2s linear;
+}
+
+.btn:hover {
+  box-shadow: 0px -6px 0 #9b160a inset;
+}
+
+/* Fonts */
+/* ================================== */
+h3{
+  font-size: 50px;
+  font-variant: small-caps;
+}
+
+h4{
+  font-size: 40px;
+  font-variant: small-caps;
+  background-color: rgba(251, 202, 101, 0.6); /* обводка изображения */
+}
+
+.description{
+  font-size: 15px;
+  font-variant: small-caps;
+}
+
+.text{
+  font-size: 20px;
+  font-variant: small-caps;
+}
+
+.metrics{
+  font-size: 40px;
+  font-variant: small-caps;
+}
+
+.fire-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem; /* Размер огоньков */
+  padding: 0 1rem; /* Отступы от края */
+}
+/* Introduction */
+/* ================================== */
+.intro{
+  margin-top: 60px;
+  font-family: 'Arial', 'Verdana', sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+}
+
+/* Внешний контейнер для центрирования */
+.frame-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh; /* Полная высота экрана или нужная высота */
+  width: 100%;
+}
+/* Контейнер для рамки */
+.image1-frame {
+  display: inline-block;
+  padding: 10px; /* расстояние между рамкой и изображением */
+  background-color: #fa9315; /* цвет рамки */
+  border-radius: 8px; /* скругление углов рамки */
+  position: relative;
+  top: 5px; /* смещение рамки по вертикали */
+  left: 5px; /* смещение рамки по горизонтали */
+  border: 1px solid #faf4e7; 
+  width: 80%; /* Ширина рамки */
+  height: 65%;
+  transition: top 0.6s ease, right 0.6s ease; /* плавный эффект для рамки */
+}
+
+/* Стили самого изображения */
+.image1 {
+  display: block;
+  border-radius: 8px; /* скругление углов изображения, совпадающее с рамкой */
+  position: relative;
+  width: 100%; /* Устанавливаем ширину изображения на 100% от родительского элемента */
+  height: 100%; /* Устанавливаем высоту изображения на 100% от родительского элемента */
+  object-fit: cover; /* Масштабируем изображение, сохраняя пропорции */
+  top: -65px; /* смещение изображения обратно, чтобы оно перекрывало часть рамки */
+  right: -45px;
+  border: 10px solid rgba(251, 202, 101, 0.3); /* обводка изображения */
+  transition: top 0.6s ease, right 0.6s ease; /* плавный эффект для изображения */
+}
+
+/* При наведении на изображение */
+.image1:hover {
+  top: -10px; /* возвращаем изображение на место, чтобы оно совпало с рамкой */
+  right: 10px;
+}
+
+/* Problems */
+/* ================================== */
+/* Контейнер для галереи */
+.gallery {
+  display: flex;
+  justify-content: space-around; /* Выравниваем изображения по горизонтали */
+  align-items: center;
+  flex-wrap: wrap; /* Переносим изображения на новую строку при необходимости */
+  padding: 20px;
+}
+
+/* Блок с изображением и подписью */
+.image-block {
+  text-align: center; /* Центрируем содержимое блока */
+  margin: 10px; /* Отступ между блоками */
+  transition: transform 0.3s ease; /* Плавный эффект при наведении */
+  background-color: rgba(115, 15, 9, 0.3); /* Полупрозрачный фон */
+  border-radius: 10px; /* Скругление углов блока */
+  padding: 10px;
+}
+
+/* Изображение */
+.image {
+  width: 200px; /* Ширина изображения */
+  height: auto; /* Высота автоматически для сохранения пропорций */
+  border-radius: 8px; /* Скругление углов изображения */
+}
+
+/* Подпись */
+.caption {
+  margin-top: 10px; /* Отступ сверху */
+  font: 1.5em "FreeMono", monospace;
+}
+
+/* Увеличиваем блок с изображением и подписью при наведении */
+.image-block:hover {
+  transform: scale(1.05); /* Увеличиваем весь блок */
+}
+
+/* Solution */
+/* ================================== */
+.image-container2 {
+  position: relative;
+  height: 600px; /* Указываем высоту явно */
+  width: fit-content;
+  background-color:  #240605; /* Цвет фона */
+}
+
+.image-stack {
+  position: absolute;
+  width: 480px; /* Устанавливаем одинаковую ширину */
+  height: 250px; /* Устанавливаем одинаковую высоту */
+  object-fit: cover; /* Сохраняем пропорции и обрезаем изображение, если оно не подходит */
+  border-radius: 8px; /* скругление углов рамки */
+  border: 1px solid #faf4e7; 
+  transition: transform 2.6s ease-out;
+}
+
+.img1 {
+  z-index: 3;
+  top: 210px;
+  left: 400px;
+}
+
+.img2 {
+  z-index: 2;
+  top: 180px;
+  left: 500px;
+}
+
+.img3 {
+  z-index: 1;
+  top: 120px;
+  left: 600px;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;   /* Центрируем содержимое по горизонтали */
+  align-items: center;       /* Центрируем по вертикали */
+  height: 80vh;             /* Высота контейнера на всю высоту окна */
+  width: 100%;               /* Ширина контейнера */
+}
+
+.centered-gif {
+  margin-right: 80px;        /* Отступ справа для размещения карточек */
+  height: 70%;
+  border-radius: 8px;
+  border: 1px solid #faf4e7; 
+}
+
+.metrics-container {
+  display: flex;
+  flex-direction: column;    /* Карточки будут располагаться вертикально */
+  justify-content: space-between; /* Равномерно распределяем карточки */
+  height: 70%;             /* Задаём высоту блока с карточками */
+}
+
+.metric-card {
+  background-color:  rgba(210, 44, 9, 0.3); /* Светлый фон для карточек */
+  padding: 15px;             /* Внутренний отступ */
+  border-radius: 8px;        /* Скруглённые углы */
+  margin-bottom: 10px;       /* Отступ между карточками */
+  text-align: center;
+  font-weight: bold;
+  height: 30%;
+  width: 120%;
+  border: 1px solid #faf4e7; 
+}
+
+.metric-card:last-child {
+  margin-bottom: 0;          /* Убираем отступ для последней карточки */
+}
+
+/* Test */
+/* ================================== */
+
+.images-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; /* Расстояние между изображениями */
+  flex-wrap: wrap; /* Позволяет переносить изображения на новую строку при необходимости */
+}
+
+.image-container3 {
+  max-width: 45%; /* Ограничиваем максимальную ширину каждого контейнера */
+  min-width: 300px; /* Минимальная ширина контейнера */
+  box-shadow: 0 4px 6px rgba(251, 202, 101, 0.7);
+  padding: 10px;
+  background-color: #9b160a;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.image-container3:hover{
+  transform: scale(1.05);
+}
+.image2 {
+  width: 100%; /* Изображение занимает всю ширину контейнера */
+  height: auto;
+  border-radius: 8px;
+}
+
+.form {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Расстояние между элементами */
+  flex-wrap: wrap;
+}
+
+.file-input {
+  display: none; /* Скрываем стандартный файл-инпут */
+}
+
+.file-label {
+  border-radius: 3px;
+  color:  #faf4e7;
+  transition: .2s linear;
+  background: #fa9315;
+  font-size: medium;
+  font: normal 1.2rem "FreeMono", monospace;
+  display: inline-block;
+  padding: 10px 10px; 
+  transition: background-color 0.3s;
+}
+
+.file-label:hover {
+  box-shadow:0px -6px 0  #9b160a inset;
+}
+
+/* button on slidebar */
+.btn-test {
+  border: none;
+  color: #faf4e7;
+  background: #fa9315;
+  border-radius: 3px;
+  font-size: medium;
+  padding: 10px 10px;
+  font: normal 1.2rem "FreeMono", monospace;
+  cursor: pointer;
+  display: inline-block;
+  transition: .2s linear;
+}
+
+.btn-test:hover {
+  box-shadow: 0px -6px 0 #9b160a inset;
+}
+
+/* Links */
+.container_links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.row_links {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+  height: 400px;
+  transition: transform 0.2s;
+  padding: 20px;
+}
+.preview_container_links, .preview_container2_links {
+  flex: 1;
+  display: flex;
+}
+.preview_links {
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  background-color: #9b160a;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.preview_links img {
+  height: 150px; 
+  object-fit: cover;
+  flex: 1;
+}
+.preview_title_links{
+  padding: 20px;
+  text-align: center;
+  color: #faf4e7;
+  font: normal 1.2rem "FreeMono", monospace;
+  flex-shrink: 0;
+}
+.description_links {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #9b160a;
+  width: 100%;
+  color: #faf4e7;
+  font: normal 0.95rem "FreeMono", monospace;
+}
+.row_links:hover {
+  transform: scale(1.05);
+}
