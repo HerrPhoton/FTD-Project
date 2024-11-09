@@ -9,6 +9,8 @@ class Settings(BaseSettings):
 
     BASE_URL: str
 
+    MODEL_PATH: str
+
     class Config:
         env_file = ".env"
 

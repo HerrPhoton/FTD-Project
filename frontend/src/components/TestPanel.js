@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function TestPanel() {
-    // Начальное состояния выбранного файла и функция его изменения 
+    // Начальное состояния выбранного файла и функция его изменения
     const [selectedFile, setSelectedFile] = useState(null);
     // Вывод загруженного изображения и функция его изменения
     const [previewUrl, setPreviewUrl] = useState(null);
     // Состояние  инвертированного изображения и его функция изменения
     const [invertedImage, setInvertedImage] = useState(null);
-    // Состояние загрузки и функция её изменения 
+    // Состояние загрузки и функция её изменения
     const [isLoading, setIsLoading] = useState(false);
-    // Начальное состояние ошибки и функция её изменения 
+    // Начальное состояние ошибки и функция её изменения
     const [error, setError] = useState(null);
 
     // Функция для загрузки файла
@@ -31,27 +31,26 @@ function TestPanel() {
             setPreviewUrl(null);
         }
     };
-    // Получение инвертированного изображения
-    const handleSubmit = async (event) => {
-        event.preventDefault(); 
 
-        const formData = new FormData();
-        formData.append('file', selectedFile);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         try {
             // Ставим загрузку
             setIsLoading(true);
             setError(null);
 
-            const response = await axios.post('http://localhost:8000/invert-image/', formData, {
+            const response = await axios.post('http://localhost:8080/model/all/run', {
+                base64_image: previewUrl
+            }, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-                responseType: 'blob', // Важно для обработки бинарных данных
+                    'Content-Type': 'application/json',
+                }
             });
+
             // Получаем данные обработанные сервером
-            const imageUrl = URL.createObjectURL(response.data);
-            setInvertedImage(imageUrl);
+            const processedImage = response.data.data.base64_image;
+            setInvertedImage(processedImage);
         } catch (err) {
             console.error(err);
             setError('Произошла ошибка при обработке изображения.');
