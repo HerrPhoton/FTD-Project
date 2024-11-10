@@ -305,7 +305,7 @@ h4{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Расстояние между элементами */
+  gap: 30px; /* Расстояние между элементами */
   flex-wrap: wrap;
 }
 
@@ -400,4 +400,73 @@ h4{
 }
 .row_links:hover {
   transform: scale(1.05);
+}
+
+.dropdown {
+  position: relative; /* Создаём точку отсчета для абсолютного позиционирования */
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.dropdown-menu {
+  position: absolute; /* Абсолютное позиционирование для фиксации слева от кнопки */
+  top: 0; /* Выравниваем меню по верхнему краю кнопки */
+  right: 100%; /* Располагаем меню слева от кнопки */
+  background-color: #9b160a ;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  width: 100px;
+  z-index: 1;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #fa9315;
+}
+
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.slider-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.slider {
+  -webkit-appearance: none; /* Убираем стандартный стиль браузера */
+  width: 150px;
+  cursor: pointer;
+  background-color: #9b160a;
+  appearance: none;
+  border-radius: 8px;
+  border: 1px solid #faf4e7;
+}
+/* Стили для Chrome, Safari и Edge */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Ширина бегунка */
+  height: 20px; /* Высота бегунка */
+  background-color: #fa9315; /* Цвет бегунка */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-value {
+  margin-top: 5px;
+  margin-left: 70px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fa9315;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config' 
 
 function TestPanel() {
     // Начальное состояния выбранного файла и функция его изменения
@@ -40,8 +41,11 @@ function TestPanel() {
             setIsLoading(true);
             setError(null);
 
-            const response = await axios.post('http://localhost:8080/model/all/run', {
-                base64_image: previewUrl
+            const response = await axios.post(`${API_URL}/model/${selectedOption.toLowerCase()}/run`, {
+                base64_image: previewUrl,
+                conf: sliderValueConf,
+                iou: sliderValueIou,
+                max_det: sliderValueDet,
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,16 +62,86 @@ function TestPanel() {
             setIsLoading(false);
         }
     };
+    // Для выпадающего меню
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('Выберите модель');
 
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const selectOption = (option) => {
+        setSelectedOption(option);
+        setIsDropdownOpen(false);
+    };
+    const [sliderValueConf, setSliderValueConf] = useState(0.4); // Начальное значение ползунка
+    const [sliderValueIou, setSliderValueIou] = useState(0.2); // Начальное значение ползунка
+    const [sliderValueDet, setSliderValueDet] = useState(300); // Начальное значение ползунка
+    
     return (
         <div class='intro'>
             <h3 class="h3">
-            🔥 Попробуйте протестировать нашу модель 🔥
+                🔥 Попробуйте протестировать нашу модель 🔥
             </h3>
-            <hr/>
-            <br/>
+            <hr />
+            <br />
             <div class='container'>
                 <form onSubmit={handleSubmit} className='form'>
+                    <div className="dropdown">
+                        <button type="button" onClick={toggleDropdown} className="btn-test">
+                            {selectedOption}
+                        </button>
+                        {isDropdownOpen && (
+                            <ul className="dropdown-menu">
+                                <li onClick={() => selectOption('Fire')}>Fire</li>
+                                <li onClick={() => selectOption('Smoke')}>Smoke</li>
+                                <li onClick={() => selectOption('All')}>All</li>
+                            </ul>
+                        )}
+                    </div>
+                    <div className="slider-container">
+                        <label htmlFor="slider">Confidence:</label>
+                        <input
+                            type="range"
+                            id="slider"
+                            min="0.0"
+                            max="1.0"
+                            step='0.1'
+                            value={sliderValueConf}
+                            onChange={(e) => setSliderValueConf(e.target.value)}
+                            className="slider"
+                        />
+                        <span className="slider-value">{sliderValueConf}</span>
+                    </div>
+                    <div className="slider-container">
+                        <label htmlFor="slider">IOU:</label>
+                        <input
+                            type="range"
+                            id="slider"
+                            min="0.0"
+                            max="1.0"
+                            step='0.1'
+                            value={sliderValueIou}
+                            onChange={(e) => setSliderValueIou(e.target.value)}
+                            className="slider"
+                        />
+                        <span className="slider-value">{sliderValueIou}</span>
+                    </div>
+                    <div className="slider-container">
+                        <label htmlFor="slider">Max detections:</label>
+                        <input
+                            type="range"
+                            id="slider"
+                            min="100"
+                            max="500"
+                            step='100'
+                            value={sliderValueDet}
+                            onChange={(e) => setSliderValueDet(e.target.value)}
+                            className="slider"
+                        />
+                        <span className="slider-value">{sliderValueDet}</span>
+                    </div>
                     <input
                         type="file"
                         id="file-input"
@@ -83,13 +157,14 @@ function TestPanel() {
                         {/* // Взависимости от действия меняем название у кнопки */}
                         {isLoading ? 'Обработка...' : 'Тестирование'}
                     </button>
+
                 </form>
                 <div class='images-wrapper'>
                     {/* // Если закгружено изображение, то выводим его */}
                     {previewUrl && (
                         <div class='image-container3'>
                             <span className='text'>Исходное изображение:</span>
-                            <hr/>
+                            <hr />
                             <img src={previewUrl} className='image2' />
                         </div>
                     )}
@@ -97,7 +172,7 @@ function TestPanel() {
                     {invertedImage && (
                         <div class='image-container3'>
                             <span className='text'>Обработанное изображение:</span>
-                            <hr/>
+                            <hr />
                             <img src={invertedImage} className='image2' />
                         </div>
                     )}

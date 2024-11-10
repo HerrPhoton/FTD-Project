@@ -1,12 +1,13 @@
 import React, { useEffect, useState} from 'react';
+import { API_URL } from '../config'
 
 function LinksPanel() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-      fetch('posts/data.json')
+      fetch(`${API_URL}/links`)
         .then((response) => response.json())
-        .then((data) => setPosts(data));
+        .then((data) => setPosts(data.data));
     }, []);
     return (
         <div className='intro'>
@@ -17,14 +18,14 @@ function LinksPanel() {
                 {posts.map((post) => (
                     <div className="row_links" key={post.id}>
                         <div className="preview_container_links">
-                                <a href={post.postUrl} className="preview_links" target="_blank">
-                                    <img src={post.imageUrl} alt=""/>
+                                <a href={post.post_url} className="preview_links" target="_blank">
+                                    <img src={`${API_URL}/${post.image_url}`} alt=""/>
                                     <div className="preview_title_links">{post.title}</div>
                                 </a>
                         </div>
                         <div className="preview_container2_links">
                             <div className="description_links">
-                                <h3>Abstract</h3>
+                                <h3>Описание</h3>
                                 <p>
                                     {post.summary}
                                 </p>
