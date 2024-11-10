@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from .core.db import init_db
 from .api.routes import router
 from .core.config import settings
 from .core.middleware import setup_middleware
@@ -12,6 +13,7 @@ app = FastAPI(
     }],
 )
 
+init_db()
 setup_middleware(app)
 
 app.include_router(router)
