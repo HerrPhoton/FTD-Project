@@ -29,8 +29,8 @@ function Slidebar(){
                     className="btn"
                     onMouseEnter={() => setIsHovered(6.5)}
                     onMouseLeave={() => setIsHovered(4)}
-                    onClick={() => navigate('/API')}
-                    style={{ color: handleClick('/API') ? "#9B160A" : "#faf4e7" }}
+                    onClick={() => navigate('/api')}
+                    style={{ color: handleClick('/api') ? "#9B160A" : "#faf4e7" }}
                 >
                     <span>API</span>
                 </button>

@@ -470,3 +470,74 @@ h4{
   font-weight: bold;
   color: #fa9315;
 }
+
+/* Основной фон */
+.swagger-ui {
+  background-color: #faf4e7;
+}
+
+/* Заголовки секций */
+.swagger-ui .opblock-tag {
+  color: #9B160A;
+  background-color: #faf4e7;
+}
+
+/* Методы API */
+.swagger-ui .opblock {
+  background-color: #faf4e7;
+  border: 1px solid #faf4e7;
+}
+
+/* Кнопки Try it out */
+.swagger-ui .btn {
+  background-color: #9B160A;
+  color: #faf4e7;
+}
+
+/* Описания параметров */
+.swagger-ui .parameter__name {
+  color: #9B160A;
+}
+
+/* Схемы */
+.swagger-ui .model-box {
+  background-color: #faf4e7;
+}
+
+/* Responses */
+.swagger-ui .responses-table {
+  background-color: #faf4e7;
+}
+
+/* Цвета для разных методов */
+.swagger-ui .opblock-get {
+  border-color:#9B160A;
+  background: rgba(210, 44, 9, 0.3);
+}
+
+.swagger-ui .opblock-post {
+  border-color: #9B160A;
+  background: rgba(210, 44, 9, 0.3);
+}
+
+.swagger-ui .opblock-delete {
+  border-color: #9B160A;
+  background: rgba(210, 44, 9, 0.3);
+}
+
+/* Текст внутри блоков */
+.swagger-ui .opblock .opblock-summary-description,
+.swagger-ui .opblock .opblock-description-wrapper p {
+  color: #9B160A;
+}
+
+/* Заголовки параметров */
+.swagger-ui .parameters-col_name {
+  color: #9B160A;
+}
+
+/* Поля ввода */
+.swagger-ui input[type=text] {
+  background-color: #faf4e7;
+  border: 1px solid #faf4e7;
+}

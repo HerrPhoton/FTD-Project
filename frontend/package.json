@@ -11,6 +11,9 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
+    "react-shadow": "^20.5.0",
+    "swagger-ui": "^5.18.2",
+    "swagger-ui-react": "^5.18.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

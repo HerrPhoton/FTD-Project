@@ -77,7 +77,7 @@ function TestPanel() {
     };
     const [sliderValueConf, setSliderValueConf] = useState(0.4); // Начальное значение ползунка
     const [sliderValueIou, setSliderValueIou] = useState(0.2); // Начальное значение ползунка
-    const [sliderValueDet, setSliderValueDet] = useState(300); // Начальное значение ползунка
+    const [sliderValueDet, setSliderValueDet] = useState(10); // Начальное значение ползунка
     
     return (
         <div class='intro'>
@@ -133,9 +133,9 @@ function TestPanel() {
                         <input
                             type="range"
                             id="slider"
-                            min="100"
-                            max="500"
-                            step='100'
+                            min="1"
+                            max="50"
+                            step='1'
                             value={sliderValueDet}
                             onChange={(e) => setSliderValueDet(e.target.value)}
                             className="slider"
