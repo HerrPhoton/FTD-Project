@@ -32,7 +32,7 @@ function TestPanel() {
             setPreviewUrl(null);
         }
     };
-
+    // Функция для работы формы "Тестирование"
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -40,7 +40,7 @@ function TestPanel() {
             // Ставим загрузку
             setIsLoading(true);
             setError(null);
-
+            // Отправляем, полученные данные на сервер для обработки 
             const response = await axios.post(`${API_URL}/model/${selectedOption.toLowerCase()}/run`, {
                 base64_image: previewUrl,
                 conf: sliderValueConf,
@@ -66,18 +66,18 @@ function TestPanel() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('Выберите модель');
 
-
+    //Обработка нажатия на выпадающий список
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
-
+    // Обработка выбора элемента из выпадающего списка
     const selectOption = (option) => {
         setSelectedOption(option);
         setIsDropdownOpen(false);
     };
-    const [sliderValueConf, setSliderValueConf] = useState(0.4); // Начальное значение ползунка
-    const [sliderValueIou, setSliderValueIou] = useState(0.2); // Начальное значение ползунка
-    const [sliderValueDet, setSliderValueDet] = useState(10); // Начальное значение ползунка
+    const [sliderValueConf, setSliderValueConf] = useState(0.4); // Начальное значение ползунка для Confidence
+    const [sliderValueIou, setSliderValueIou] = useState(0.2); // Начальное значение ползунка для IOU
+    const [sliderValueDet, setSliderValueDet] = useState(10); // Начальное значение ползунка для Maximum Detections
     
     return (
         <div class='intro'>
@@ -89,17 +89,21 @@ function TestPanel() {
             <div class='container'>
                 <form onSubmit={handleSubmit} className='form'>
                     <div className="dropdown">
+                        {/* Кнопка, при нажатии на которую выпадает список доступных вариантов */}
                         <button type="button" onClick={toggleDropdown} className="btn-test">
                             {selectedOption}
                         </button>
+                        {/* Если кнопка была нажата, то выводится список */}
                         {isDropdownOpen && (
                             <ul className="dropdown-menu">
+                                {/* При выборе устанавливается название необходимой модели и закрывается список */}
                                 <li onClick={() => selectOption('Fire')}>Fire</li>
                                 <li onClick={() => selectOption('Smoke')}>Smoke</li>
                                 <li onClick={() => selectOption('All')}>All</li>
                             </ul>
                         )}
                     </div>
+                    {/* Слайдер для установления значения Confidence */}
                     <div className="slider-container">
                         <label htmlFor="slider">Confidence:</label>
                         <input
@@ -114,6 +118,7 @@ function TestPanel() {
                         />
                         <span className="slider-value">{sliderValueConf}</span>
                     </div>
+                    {/* Слайдер для установления значения IOU */}
                     <div className="slider-container">
                         <label htmlFor="slider">IOU:</label>
                         <input
@@ -128,6 +133,7 @@ function TestPanel() {
                         />
                         <span className="slider-value">{sliderValueIou}</span>
                     </div>
+                    {/* Слайдер для установления значения Max detections */}
                     <div className="slider-container">
                         <label htmlFor="slider">Max detections:</label>
                         <input
@@ -142,6 +148,7 @@ function TestPanel() {
                         />
                         <span className="slider-value">{sliderValueDet}</span>
                     </div>
+                    {/* Форма для ввода изображения, которая при изменении порверяется фукнцией handleFileChange */}
                     <input
                         type="file"
                         id="file-input"
@@ -168,7 +175,7 @@ function TestPanel() {
                             <img src={previewUrl} className='image2' />
                         </div>
                     )}
-                    {/* Если есть изображение, то выводим его   */}
+                    {/* Если есть готовое обработанное изображение, то выводим его */}
                     {invertedImage && (
                         <div class='image-container3'>
                             <span className='text'>Обработанное изображение:</span>

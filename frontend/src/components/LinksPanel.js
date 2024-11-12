@@ -4,6 +4,7 @@ import { API_URL } from '../config'
 function LinksPanel() {
     const [posts, setPosts] = useState([]);
 
+    // При загрузки страницы получаем за раз все содержимое постов 
     useEffect(() => {
       fetch(`${API_URL}/links`)
         .then((response) => response.json())

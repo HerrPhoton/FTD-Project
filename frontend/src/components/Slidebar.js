@@ -5,9 +5,11 @@ import SearchBar from './SearchBar';
 function Slidebar(){
     const navigate = useNavigate()
     const location = useLocation()
+    // Функция для проверки нахождения в данной директории
     const handleClick = (path) =>{
         return (location.pathname === path);
     };
+    // Значение и функция для отслеживания курсора на кнопке
     const [isHovered, setIsHovered] = useState(4);
     return(
         <div className="navigation">

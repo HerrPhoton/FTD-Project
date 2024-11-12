@@ -1,24 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react';
 function IntroductionPanel() {
+  // Содержимое для описания блока проблем
     const images = [
         { src: 'fire1.png', caption: '335 тысяч', text: 'количество пожаров в России в год'},
         { src: 'fire2.png', caption: '5 минут', text: 'среднее время прибытия пожарных'},
         { src: 'fire3.png', caption: '8.2 тысяч', text: 'количество пострадавших при пожарах'},
         { src: 'fire4.png', caption: '7.8 тысяч', text: 'количество погибших при пожарах'},
     ];
+    // Значение и функция смещения(скроллинга) страницы
     const [scrollPosition, setScrollPosition] = useState(0);
-    const imageContainerRef = useRef(null); // Используем useRef для получения ссылки на блок с изображениями
+    // Используем useRef для получения ссылки на блок с изображениями
+    const imageContainerRef = useRef(null); 
   
     useEffect(() => {
+      // Функция, которая вызывается при прокрутке страницы
       const handleScroll = () => {
+        // Проверка на существование ссылки
         if (imageContainerRef.current) {
+          // Получаем положение элемента на экране
           const rect = imageContainerRef.current.getBoundingClientRect();
+          // Получаем текущую вертикальную позицию прокрутки окна
           const scrollPos = window.pageYOffset;
           
           // Вычисляем позицию блока относительно верхней и нижней границ окна
           if (rect.top <= window.innerHeight && rect.bottom >= 0) {
             // Если блок в видимой области, рассчитываем смещение
             const offsetFromTop = scrollPos - (scrollPos - rect.top) + window.innerHeight;
+            // Обновляем состояние с новым значением смещения
             setScrollPosition(offsetFromTop);
           } else {
             // Если блок не виден, возвращаем изображения в исходное положение
@@ -26,21 +34,24 @@ function IntroductionPanel() {
           }
         }
       };
-  
+      // Добавляем слушатель события прокрутки
       window.addEventListener('scroll', handleScroll);
   
       return () => {
+        // Убираем слушатель события прокрутки при размонтировании компонента
         window.removeEventListener('scroll', handleScroll);
       };
     }, []);
   
     const calculateOffsetX = (initialOffsetX, direction) => {
-      const maxOffset = 200; // Максимальное смещение по оси X
+      // Максимальное смещение по оси X
+      const maxOffset = 200; 
       return initialOffsetX + direction * Math.min(maxOffset, scrollPosition / 3);
     };
   
     const calculateOffsetY = (initialOffsetY, direction) => {
-      const maxOffset = 100; // Максимальное смещение по оси Y
+      // Максимальное смещение по оси Y
+      const maxOffset = 100; 
       return initialOffsetY + direction * Math.min(maxOffset, scrollPosition / 5);
     };
     return (
@@ -85,13 +96,13 @@ function IntroductionPanel() {
             <br/>
             <div className="image-container2" ref={imageContainerRef}>
                 <img src="ultralutics.jpeg" alt="Image 1" className="image-stack img1" style={{ 
-          transform: `translate(${calculateOffsetX(0, -1)}px, ${calculateOffsetY(0, 1)}px)` // Двигаем вправо и вверх
+          transform: `translate(${calculateOffsetX(0, -1)}px, ${calculateOffsetY(0, 1)}px)` // Двигаем влево и вниз
         }}/>
                 <img src="yolov8.png" alt="Image 2" className="image-stack img2" style={{
-            transform: `translate(${calculateOffsetX(0, 0)}px, ${calculateOffsetY(0, 0)}px)` // Двигаем влево и вниз
+            transform: `translate(${calculateOffsetX(0, 0)}px, ${calculateOffsetY(0, 0)}px)` // Не меняем позицию
         }}/>
                 <img src="ultralutics.jpeg" alt="Image 3" className="image-stack img3"style={{ 
-            transform: `translate(${calculateOffsetX(0, 1)}px, ${calculateOffsetY(0, -1)}px)` // Двигаем вправо и вниз
+            transform: `translate(${calculateOffsetX(0, 1)}px, ${calculateOffsetY(0, -1)}px)` // Двигаем вправо и вверх
         }}/>
             </div>
 
